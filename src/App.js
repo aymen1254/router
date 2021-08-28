@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
+import { Proudit } from './Compents/Data';
+import Description from './Compents/Description';
+import ModelList from './Compents/ModelList';
 
 function App() {
+  const [tlemdha, setTlemdha] = useState(Proudit)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+     <BrowserRouter>
+     <switch>
+       <Route path='/' component={ModelList} />
+       <Route path='/student/:id' render={(props=>
+        <Description  Proudit={tlemdha} {...props} /> 
+        )} />
+
+      
+     </switch>
+     </BrowserRouter>
     </div>
   );
 }
